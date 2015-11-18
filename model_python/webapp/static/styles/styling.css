@@ -1,0 +1,73 @@
+/*
+ASU CSE 591
+Author: Group 4
+*/
+
+.jumbotron{
+	background-repeat:no-repeat;
+	background-position:center;
+	background-image:url("../images/earthGlobeWallpaper.jpg");
+	height:300px;
+	color:white !important;
+	font-size:xx-large;
+}
+
+.primary-text{
+	color: white;
+	text-align: center;
+}
+
+.thumbnail{
+	border:0 none;
+	text-align:center;
+	background-color:transparent;
+	margin-top:10px;
+	box-shadow:none;
+}
+
+.margin-top{
+	margin-top:150px;
+}
+
+.margin-top-med{
+	margin-top:50px;
+}
+.margin-top-sm{
+	margin-top:15px;
+}
+
+.background-gray{
+	background-color:#EEEEEE;
+}
+
+.map{
+	height:350px;
+	width:100%;
+	margin:20px;
+	padding:20px;
+}
+
+.label-text{
+	margin-right:10px;
+}
+
+.invisible{
+	display:none;
+	visibility:hidden;
+	text-align:center;
+}
+
+.graph {
+	margin-top: 20px;
+}
+
+.graph div{
+	font-style:normal;
+	font-weight:bold;
+	font-size:10px;
+	background-color:#9A9A9A;
+	text-align:right;
+	margin:1px;
+	padding:1px;
+	color: black;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+ASU CSE 591
+Author: Group 4
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Photo Location Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/static/js/jquery.color-2.1.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/app.css" type="text/css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="/static/js/app.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYECxC6_HRstqOlh3VU1-Dr6PdwVbqfzk&amp;callback=initMap"async defer></script>
+  </head>
+  <body ng-app="LocationPredictor" ng-controller="PredictionController as predictCtrl">
+    <!-- title -->
+    <div class="jumbotron">
+      <h1 class="margin-top-md primary-text">Photo Location Prediction</h1>
+    </div>
+    <div class="container">
+      <!-- descriptive text -->
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h3>Provide a set of photo tags and we'll then show you where a photo with those tags is most likely to be!</h3>
+        </div>
+      </div>
+      <!-- form inputs -->
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 margin-top-sm">
+          <form class="form-horizontal" ng-submit="predictCtrl.predict()">
+            <div class="form-group">
+              <label class="col-md-1 control-label label-text">Tags:</label>
+              <div class="col-md-10">
+                <input class="form-control" type="text" ng-model="predictCtrl.currentTags">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-1 control-label label-text">Count:</label>
+              <div class="col-md-10">
+                <input class="form-control" type="int" ng-model="predictCtrl.currentCount">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1">
+                <button class="btn btn-primary" type="submit">Predict</button>
+              </div>
+              <!-- loading -->
+              <!--<div class="col-md-2 col-md-offset-2" id="loading-animation" ng-class="{invisible: !predictCtrl.loading}">
+                <div class="spinner-loader">
+                    Loading…
+                </div>
+              </div> -->
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- map and chart-->
+      <div class="row margin-top-sm">
+        <div class="col-md-12">
+          <div id="map"></div>
+        </div>
+      </div>
+
+      <!-- history -->
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 margin-top-md">
+          <span id="loadtext"></span>
+
+          <h5 style="text-align:center"><i style="color:#ccc"><small>Location History</small></i></h5>
+          <table id="added-articles" class="table">
+            <tr>
+              <th>Tags</th>
+            </tr>
+            <tr ng-repeat="hist in predictCtrl.searchHistory">
+              <td>
+                <span class="label-tag"><a class="label label-primary" ng-repeat="tag in hist.tags" ng-click="predictCtrl.setMap(hist.predictions)" href="#map">[[tag]]</a></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

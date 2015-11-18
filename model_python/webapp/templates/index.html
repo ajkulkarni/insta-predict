@@ -1,0 +1,103 @@
+<!--
+ASU CSE 591
+Author: Group 4
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Photo Location Prediction</title>
+
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" type="text/css" href="../static/styles/styling.css" >
+		<link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+		<script src="{{ url_for('static', filename='js/predictionfunctions.js') }}"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYECxC6_HRstqOlh3VU1-Dr6PdwVbqfzk&callback=initMap"async defer></script>
+
+
+	</head>
+
+	<body>
+
+		<!-- title -->
+		<div class="jumbotron">
+			<h1 class="margin-top-md primary-text">Photo Location Prediction</h1>
+		</div>
+
+		<div class="container">
+			<!-- descriptive text -->
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<h3>Give us a set of photo <i><u>Tags</u></i> and a <i><u>Count</u></i> of how many predictions you'd like to see.  We'll then show you where a photo with those tags is most likely to be!</h3>
+				</div>
+			</div>
+
+			<!-- form inputs -->
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 margin-top-sm">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="col-md-1 control-label label-text">Tags:</label>
+							<div class="col-md-10">
+								<input class="form-control" id="tags" name="tags" type="text" placeholder="tag1,tag2,...">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-1 control-label label-text">Count:</label>
+							<div class="col-md-10">
+								<input class="form-control" id="count" name="count" type="int" placeholder="1">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1">
+								<button class="btn btn-primary" type="button" onclick="sendAjax()">Predict</button>
+							</div>
+							<!-- loading -->
+							<div class="col-md-2 col-md-offset-2 invisible" id="loading-animation" >
+								<div class="spinner-loader">
+				  					Loading…
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- map and chart-->
+			<div class="row margin-top-sm">
+				<div class="col-md-8">
+					<div id="map" class="map"></div>
+				</div>
+				<div class="col-md-4">
+					<div class="graph"></div>
+				</div>
+			</div>
+
+			<!-- history -->
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 margin-top-md">
+					<span id="loadtext"></span>
+
+
+					<h5 style="text-align:center"><i style="color:#ccc"><small>Location History</small></i></h5>
+
+					<table id="added-articles" class="table">
+						<tr>
+							<th>Tags</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
